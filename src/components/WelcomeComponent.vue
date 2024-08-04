@@ -18,6 +18,9 @@ import LanguageSelecion from './LanguageSelecion.vue'
 import WelcomeHeader from './Welcome/WelcomeHeader.vue'
 import WelcomeContent from './Welcome/WelcomeContent.vue'
 
+import { useEventBus } from '@/helpers/eventBus';
+const { emit } = useEventBus();
+
 export default {
   name: 'WelcomeComponent',
   components: {
@@ -66,6 +69,13 @@ export default {
       document.querySelector(`.welcome-step[data-step="${this.actualStep}"]`).classList.add('active');
     });
   },
+  watch: {
+    actualStep(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        emit('nextStep', newVal);
+      }
+    },
+  },
 }
 </script>
 
@@ -73,7 +83,6 @@ export default {
 .welcome-step {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   display: none;
   align-items: center;
   position: absolute;

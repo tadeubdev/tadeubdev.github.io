@@ -39,6 +39,8 @@ const i18n = createI18n({
       my_github: "My Github",
       my_devto: "My Dev.to",
       my_medium: "My Medium",
+      app_created_with: "App created using: HTML, JS and CSS by Tadeu Barbosa.",
+      simulating_loading: "Simulating loading...",
       experiences_data: [
         {
           image: require('@/assets/images/prints/workana.png'),
@@ -198,6 +200,8 @@ const i18n = createI18n({
       my_github: "Meu Github",
       my_devto: "Meu Dev.to",
       my_medium: "Meu Medium",
+      app_created_with: "App criado utilizando: HTML, JS e CSS por Tadeu Barbosa.",
+      simulating_loading: "Simulando carregamento...",
       experiences_data: [
         {
           image: require('@/assets/images/prints/workana.png'),

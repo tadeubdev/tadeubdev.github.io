@@ -1,7 +1,16 @@
 <template>
   <div id="welcome-content" :style="{ backgroundImage: `url(${imageBackground})` }">
     <div class="content">
-      <div id="desktop">
+      <div id="welcome-loading" v-if="loading === true">
+        <div class="loading-center">
+          <p class="loading-title">{{ $t('app_created_with') }}</p>
+          <p class="loading-subtitle">{{ $t('simulating_loading') }}</p>
+          <div class="loading">
+            <div class="loading-bar"></div>
+          </div>
+        </div>
+      </div>
+      <div id="desktop" v-else-if="loading === false">
         <button class="desktop-icon" @click="handleOpenApp('about-me')">
           <i class="fas fa-address-book"></i>
           <span>{{ $t('about_me') }}</span>
@@ -56,6 +65,8 @@ import devtoLogo from '@/assets/images/links/devto.png';
 import mediumLogo from '@/assets/images/links/medium.png';
 
 import WelcomeApps from './WelcomeApps.vue';
+import { useEventBus } from '@/helpers/eventBus';
+const { on } = useEventBus();
 
 export default {
   name: 'WelcomeContent',
@@ -70,6 +81,7 @@ export default {
       devtoLogo,
       mediumLogo,
       openedApp: '',
+      loading: null,
     };
   },
   methods: {
@@ -99,6 +111,22 @@ export default {
       }
     },
   },
+  mounted() {
+    on('nextStep', async (nextStep) => {
+      if (nextStep === 2) {
+        await (() => new Promise((resolve) => setTimeout(resolve, 1000)))();
+        this.loading = true;
+        const audio = new Audio(require('@/assets/sounds/os-start.wav'));
+        audio.volume = 0.5;
+        setTimeout(() => {
+          audio.play();
+        }, 2000);
+        setTimeout(() => {
+          this.loading = false;
+        }, 3000);
+      }
+    });
+  },
 };
 </script>
 
@@ -119,7 +147,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 #welcome-content * {
   z-index: 1;
@@ -172,6 +200,54 @@ export default {
 }
 #welcome-content .desktop-icon.link i {
   font-size: 11px;
+}
+#welcome-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+#welcome-loading .loading {
+  width: 500px;
+  height: 10px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#welcome-loading .loading-bar {
+  width: 0;
+  height: 100%;
+  background: #FFF;
+  animation: loading 3s;
+}
+.loading-title {
+  color: #FFF;
+  font-size: 20px;
+  text-align: center;
+}
+.loading-subtitle {
+  color: #FFF;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  55% {
+    width: 50%;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 500px) and (max-width: 768px) {
   #welcome-content #desktop {
