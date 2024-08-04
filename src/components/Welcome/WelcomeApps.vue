@@ -22,6 +22,17 @@
       />
       <my-experiences />
     </div>
+    <div
+      class="app xl"
+      :class="{ active: openedApp === 'airplane_game' }"
+      data-app-name="airplane_game"
+    >
+      <app-header
+        :title="$t('airplane_game')"
+        @open-app="$emit('open-app', $event)"
+      />
+      <airplane-game />
+    </div>
   </div>
 </template>
 
@@ -29,6 +40,7 @@
 import AppHeader from './WelcomeApps/AppHeader.vue';
 import AboutMe from './WelcomeApps/AboutMe.vue';
 import MyExperiences from './WelcomeApps/MyExperiences.vue';
+import AirplaneGame from './WelcomeApps/AirplaneGame.vue';
 
 export default {
   name: 'WelcomeApps',
@@ -36,6 +48,7 @@ export default {
     AppHeader,
     AboutMe,
     MyExperiences,
+    AirplaneGame,
   },
   props: {
     openedApp: {
@@ -69,6 +82,12 @@ export default {
   height: 90vh;
   max-width: 800px;
   max-height: 600px;
+}
+.app.xl {
+  width: 90vw;
+  height: 90vh;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 .app.active {
   display: flex;

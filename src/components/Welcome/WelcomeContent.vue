@@ -19,6 +19,10 @@
           <i class="fas fa-briefcase"></i>
           <span>{{ $t('experiences') }}</span>
         </button>
+        <button class="desktop-icon" @click="handleOpenApp('airplane_game')">
+          <img src="https://raw.githubusercontent.com/tadeubdev/jogo-aviaozinho/main/assets/icon/hd_highres.png" width="50px" />
+          <span>{{ $t('airplane_game') }}</span>
+        </button>
         <a class="desktop-icon link" :href="$t('github_url')" target="_blank" rel="noopener noreferrer">
           <img :src="githubLogo" alt="github" />
           <span>

@@ -41,6 +41,9 @@ const i18n = createI18n({
       my_medium: "My Medium",
       app_created_with: "App created using: HTML, JS and CSS by Tadeu Barbosa.",
       simulating_loading: "Simulating loading...",
+      airplane_game: "Airplane Game",
+      airplane_game_title: "Airplane Game",
+      airplane_game_subtitle: "Simple game where you control an airplane and avoid obstacles.<br>The game was developed using HTML, CSS, and JavaScript by Tadeu Barbosa.",
       experiences_data: [
         {
           image: require('@/assets/images/prints/workana.png'),
@@ -202,6 +205,9 @@ const i18n = createI18n({
       my_medium: "Meu Medium",
       app_created_with: "App criado utilizando: HTML, JS e CSS por Tadeu Barbosa.",
       simulating_loading: "Simulando carregamento...",
+      airplane_game: "Jogo de Avião",
+      airplane_game_title: "Jogo de Avião",
+      airplane_game_subtitle: "Jogo simples onde você controla um avião e desvia de obstáculos.<br>O jogo foi desenvolvido utilizando HTML, CSS e JavaScript por Tadeu Barbosa.",
       experiences_data: [
         {
           image: require('@/assets/images/prints/workana.png'),
