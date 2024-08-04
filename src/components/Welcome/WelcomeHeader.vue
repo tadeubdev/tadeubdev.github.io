@@ -39,6 +39,9 @@ export default {
       this.$emit('next-step');
     },
   },
+  mounted() {
+    alert(window.innerHeight);
+  },
 };
 </script>
 
