@@ -20,10 +20,12 @@
 </template>
 
 <script>
+import avatar from '@/assets/images/avatar-2.jpg';
+
 export default {
   data() {
     return {
-      avatar: '/images/avatar-2.jpg',
+      avatar,
     };
   },
   computed: {

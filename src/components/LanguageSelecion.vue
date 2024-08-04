@@ -10,13 +10,16 @@
 </template>
 
 <script>
+const enFlag = require('@/assets/images/locales/en.png');
+const ptFlag = require('@/assets/images/locales/pt.png');
+
 export default {
   name: 'LanguageSelecion',
   data() {
     return {
       locales: [
-        { code: 'en', text: 'Do you speak English?', flag: '/images/locales/en.png' },
-        { code: 'pt-BR', text: 'Você fala Português?', flag: '/images/locales/pt.png' },
+        { code: 'en', text: 'Do you speak English?', flag: enFlag },
+        { code: 'pt-BR', text: 'Você fala Português?', flag: ptFlag },
       ],
     };
   },
