@@ -33,6 +33,17 @@
       />
       <airplane-game />
     </div>
+    <div
+      class="app"
+      :class="{ active: openedApp === 'chatbot' }"
+      data-app-name="chatbot"
+    >
+      <app-header
+        title="ChatBot"
+        @open-app="$emit('open-app', $event)"
+      />
+      <chatbot-component />
+    </div>
   </div>
 </template>
 
@@ -41,6 +52,7 @@ import AppHeader from './WelcomeApps/AppHeader.vue';
 import AboutMe from './WelcomeApps/AboutMe.vue';
 import MyExperiences from './WelcomeApps/MyExperiences.vue';
 import AirplaneGame from './WelcomeApps/AirplaneGame.vue';
+import ChatbotComponent from './WelcomeApps/ChatbotComponent.vue';
 
 export default {
   name: 'WelcomeApps',
@@ -49,6 +61,7 @@ export default {
     AboutMe,
     MyExperiences,
     AirplaneGame,
+    ChatbotComponent,
   },
   props: {
     openedApp: {

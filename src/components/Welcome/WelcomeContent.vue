@@ -19,8 +19,12 @@
           <i class="fas fa-briefcase"></i>
           <span>{{ $t('experiences') }}</span>
         </button>
+        <!-- <button class="desktop-icon" @click="handleOpenApp('chatbot')">
+          <i class="fas fa-robot"></i>
+          <span>ChatBot</span>
+        </button> -->
         <button class="desktop-icon" @click="handleStartAirplaneGame">
-          <img src="https://raw.githubusercontent.com/tadeubdev/jogo-aviaozinho/main/assets/icon/hd_highres.png" width="50px" />
+          <img :src="airplaneIcon" width="50px" />
           <span>{{ $t('airplane_game') }}</span>
         </button>
         <a class="desktop-icon link" :href="$t('github_url')" target="_blank" rel="noopener noreferrer">
@@ -67,6 +71,7 @@ import linkedinLogo from '@/assets/images/links/linkedin.png';
 import githubLogo from '@/assets/images/links/github.png';
 import devtoLogo from '@/assets/images/links/devto.png';
 import mediumLogo from '@/assets/images/links/medium.png';
+import airplaneIcon from '@/assets/images/links/airplane_game.png';
 
 import WelcomeApps from './WelcomeApps.vue';
 import { useEventBus } from '@/helpers/eventBus';
@@ -84,6 +89,7 @@ export default {
       githubLogo,
       devtoLogo,
       mediumLogo,
+      airplaneIcon,
       openedApp: '',
       loading: null,
     };
