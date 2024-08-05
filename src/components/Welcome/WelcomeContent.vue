@@ -19,7 +19,7 @@
           <i class="fas fa-briefcase"></i>
           <span>{{ $t('experiences') }}</span>
         </button>
-        <button class="desktop-icon" @click="handleOpenApp('airplane_game')">
+        <button class="desktop-icon" @click="handleStartAirplaneGame">
           <img src="https://raw.githubusercontent.com/tadeubdev/jogo-aviaozinho/main/assets/icon/hd_highres.png" width="50px" />
           <span>{{ $t('airplane_game') }}</span>
         </button>
@@ -70,7 +70,7 @@ import mediumLogo from '@/assets/images/links/medium.png';
 
 import WelcomeApps from './WelcomeApps.vue';
 import { useEventBus } from '@/helpers/eventBus';
-const { on } = useEventBus();
+const { on, emit } = useEventBus();
 
 export default {
   name: 'WelcomeContent',
@@ -113,6 +113,10 @@ export default {
           document.querySelector(`.app[data-app-name="${this.openedApp}"]`).classList.add('fade-in');
         });
       }
+    },
+    handleStartAirplaneGame() {
+      this.handleOpenApp('airplane_game')
+      setTimeout(()=> emit('startLoadingAirplaneGame'), 100);
     },
   },
   mounted() {
@@ -177,7 +181,7 @@ export default {
   justify-items: center;
   align-items: center;
   width: 120px;
-  min-height: 130px;
+  min-height: 100px;
   background: none;
   color: #FFF;
   font-size: 20px;

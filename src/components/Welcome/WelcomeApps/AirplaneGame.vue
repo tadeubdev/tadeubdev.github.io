@@ -12,12 +12,16 @@
       title="Airplane Game"
       width="100%"
       height="100%"
+      style="border: 0"
       v-else
     />
   </div>
 </template>
 
 <script>
+import { useEventBus } from '@/helpers/eventBus';
+const { on, off } = useEventBus();
+
 export default {
   name: 'AirplaneGame',
   data() {
@@ -26,10 +30,20 @@ export default {
       iframeHref: 'https://tadeubdev.github.io/jogo-aviaozinho/',
     };
   },
+  methods: {
+    handleStartAirplaneGame() {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 5000);
+    },
+  },
   mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 5000);
+    on('startLoadingAirplaneGame', this.handleStartAirplaneGame);
+  },
+  unmounted() {
+    off('startLoadingAirplaneGame', this.handleStartAirplaneGame);
+    this.loading = false;
   },
 };
 </script>

@@ -60,7 +60,7 @@ export default {
 <style scoped>
 #aboutme {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 4fr;
   height: 100%;
 }
 #aboutme-left {
@@ -87,7 +87,7 @@ export default {
   display: none;
 }
 #aboutme-center {
-  padding: 1rem;
+  padding: 3.5rem 4rem;
   background-color: #FFF;
   color: #333;
   overflow-y: auto;

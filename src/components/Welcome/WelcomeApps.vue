@@ -1,7 +1,7 @@
 <template>
   <div id="apps">
     <div
-      class="app"
+      class="app xl"
       :class="{ active: openedApp === 'about-me' }"
       data-app-name="about-me"
     >
@@ -12,7 +12,7 @@
       <about-me />
     </div>
     <div
-      class="app"
+      class="app lg"
       :class="{ active: openedApp === 'experiences' }"
       data-app-name="experiences"
     >
@@ -56,6 +56,14 @@ export default {
       default: '',
     },
   },
+  mounted() {
+    // on document keypress escape check if openedApp is not empty then close it
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && this.openedApp) {
+        this.$emit('open-app', '');
+      }
+    });
+  },
 };
 </script>
 
@@ -73,7 +81,7 @@ export default {
   margin: auto;
   background-color: #EEE;
   color: #333;
-  border-radius: 4px;
+  border-radius: 7px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: none;
 }
