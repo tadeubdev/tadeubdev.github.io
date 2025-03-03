@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout title="Sobre Mim | Tadeu Barbosa" description="Sobre mim | Tadeu Barbosa">
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="Sobre Mim | Tadeu Barbosa"
+				tagline="Obrigado por visitar. Leia abaixo para saber mais sobre mim e minha trajetória."
+			>
+				<img
+					width="300"
+					src="/assets/portrait.jpg"
+					alt="Tadeu Barbosa"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Sobre Mim</h2>
+				<div class="content">
+					<p>
+						Obrigado por visitar meu portfólio. Meu nome é Tadeu Felipe de Oliveira Barbosa, sou desenvolvedor full stack baseado em Vila Velha, Espírito Santo, Brasil. Com mais de 6 anos de experiência, trabalho com tecnologias como PHP, Laravel, Vue.js, Node.js, Docker e Python, criando soluções personalizadas para clientes. <br>
+						Comecei minha jornada com projetos pessoais e participações em comunidades de código aberto, evoluindo para freelancing no Workana e colaborações com empresas como Mistral e Callon. Meu foco é resolver problemas complexos com código limpo e APIs eficientes, sempre buscando aprendizado contínuo, como minha formação em Análise e Desenvolvimento de Sistemas pela Cruzeiro do Sul Virtual (2021-2023).
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Educação</h2>
+				<div class="content">
+					<p>
+						<strong>Tecnólogo em Análise e Desenvolvimento de Sistemas</strong> <br>
+						<em>Cruzeiro do Sul Virtual, agosto 2021 - 2023.</em>
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Skills</h2>
+				<div class="content">
+					<p>
+						<strong>Linguagens:</strong> PHP, JavaScript, Python  
+					</p>
+					<p>
+						<strong>Frameworks:</strong> Laravel, Vue.js, Node.js, Nest.js, React  
+					</p>
+					<p>
+						<strong>Ferramentas:</strong> Docker, Redis, OpenAI, CPANEL, WHM  
+					</p>
+					<p>
+						<strong>Outros:</strong> APIs, Refatoração, Mentoria, Integrações
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

@@ -1,0 +1,305 @@
+---
+import { getCollection } from 'astro:content';
+
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Component Imports
+import CallToAction from '../components/CallToAction.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+
+// Page section components
+import ContactCTA from '../components/ContactCTA.astro';
+import Skills from '../components/Skills.astro';
+
+// Content Fetching: List four most recent work projects
+const projects = (await getCollection('work'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+	.slice(0, 4);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+					title="Olá, meu nome é Tadeu Barbosa"
+					tagline="Sou um Desenvolvedor Full Stack baseado em Vila Velha, Espírito Santo. Com mais de 6 anos de experiência, trabalho com tecnologias como PHP, JavaScript, Laravel, Vue.js, Node.js, Docker e Python, criando soluções personalizadas para clientes."
+					align="start"
+				>
+					<div class="roles">
+						<a
+							href="/docs/curriculo.pdf"
+							target="_blank"
+							style="text-decoration:none;font-size:20px;display:flex;gap:10px;align-items:center;"
+							download
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.1em; height: 1.1em;">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+							</svg>
+							Baixe meu currículo
+						</a>
+					</div>
+				</Hero>
+
+				<img
+					alt="Imagem do Tadeu Barbosa"
+					width="300"
+					src="/assets/portrait.jpg"
+				/>
+			</header>
+
+			<Skills />
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section class="section with-background with-cta">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Trabalhos mais relevantes</h3>
+					<p>Veja abaixo alguns dos meus trabalhos mais relevantes.</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+				</div>
+
+				<div class="cta">
+					<CallToAction href="/work/">
+						Ver mais
+						<Icon icon="arrow-right" size="1.2em" />
+					</CallToAction>
+				</div>
+			</section>
+
+			<section class="section with-background bg-variant">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Feedbacks</h3>
+					<p>
+						Alguns feedbacks de clientes que tive a oportunidade de trabalhar junto.
+					</p>
+				</header>
+
+				<div class="gallery">
+					<Grid variant="small">
+						<li class="mention-card">
+							<p>
+								<strong>Fabio Morelli</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								Meu segundo projeto com Tadeu! Profissional altamente capacitado, muito responsável, experiente, me propôs várias soluções e superou minhas expectativas!
+							</p>
+						</li>
+
+						<li class="mention-card">
+							<p>
+								<strong>Ingrid D S Galeazzi</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								O Tadeu é um excelente profissional e entregou o projeto melhor do que o planejado. 
+								Deu todo o suporte que precisava. Muito competente e comprometido. 
+								Com certeza contratarei para projetos futuros.
+							</p>
+						</li>
+					
+						<li class="mention-card">
+							<p>
+								<strong>Michele F do Nascimento</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								Super indico e agradeço a dedicação. 
+								Excelente profissional, o projeto ficou como precisava e esperava.
+							</p>
+						</li>
+					
+						<li class="mention-card">
+							<p>
+								<strong>Daniel Machado</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								Tadeu é um excelente profissional. Entrega dentro do prazo e tudo conforme combinado e esperado. Recomendadíssimo.
+							</p>
+						</li>
+					
+						<li class="mention-card">
+							<p>
+								<strong>Paulo</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								Tadeu foi fundamental para que meu projeto fosse concluído. 
+								Super comunicativo, me passando todas as informações necessárias para que o andamento do sistema fosse desenvolvido da melhor forma. Obrigado. 
+								Recomendo a todos do Workana!
+							</p>
+						</li>
+					
+						<li class="mention-card">
+							<p>
+								<strong>Walter Albuquerque</strong><br>
+								<span>⭐⭐⭐⭐⭐</span><br>
+								Tadeu é uma excelente pessoa, muito prestativo, atencioso e profissional. Pretendo trabalhar com ele mais vezes.
+							</p>
+						</li>
+					</Grid>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
+	}
+
+	.hero img {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.hero img {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: '';
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background:
+			url('/assets/backgrounds/noise.png') top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+
+	.mention-card {
+		display: flex;
+		min-height: 7rem;
+		padding: 1.5rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		color: var(--gray-300);
+		background: var(--gradient-subtle);
+		box-shadow: var(--shadow-sm);
+		text-align: justify;
+	}
+
+	@media (min-width: 50em) {
+		.mention-card {
+			border-radius: 1.5rem;
+			min-height: 9.5rem;
+		}
+	}
+</style>
