@@ -1,5 +1,6 @@
 ---
 title: HubFinanceiro - Sistemas Internos
+publishDate: 2025-02-10 00:00:00
 img: /assets/hubfinanceiro.png
 img_alt: Interface geral dos sistemas internos do HubFinanceiro
 description: |
